@@ -1,6 +1,3 @@
 require "webpack_rails_glue/version"
-
-module WebpackRailsGlue
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require "webpack_rails_glue/helper"
+require "webpack_rails_glue/dev_server_proxy"
