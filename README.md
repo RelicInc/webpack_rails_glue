@@ -20,9 +20,20 @@ Or install it yourself as:
 
     $ gem install webpack_rails_glue
 
-## Usage
+## Configure
 
-TODO: Write usage instructions here
+In `app/controllers/application_controller.rb`
+
+```ruby
+helper WebpackRailsGlue::Helper
+```
+
+In `config/environments/development.rb`
+
+```ruby
+config.dev_server_host = '0.0.0.0:3035'
+config.middleware.use WebpackRailsGlue::DevServerProxy, ssl_verify_none: true
+```
 
 ## Development
 
