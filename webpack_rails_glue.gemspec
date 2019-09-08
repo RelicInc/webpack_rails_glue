@@ -7,10 +7,9 @@ Gem::Specification.new do |spec|
   spec.name          = "webpack_rails_glue"
   spec.version       = WebpackRailsGlue::VERSION
   spec.authors       = ["Ryo Oba"]
-  spec.email         = ["ryo.oba@relic.co.jp"]
+  spec.email         = ["ryo.oba.ggl@gmail.com"]
 
   spec.summary       = "Lightweight Webpack-Rails Integration"
-  spec.homepage      = "https://relic.co.jp/"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
