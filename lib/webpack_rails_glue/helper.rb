@@ -57,7 +57,7 @@ module WebpackRailsGlue::Helper
 
   def dev_manifest
     if exist_dev_server_process?
-      OpenURI.open_uri("#{dev_server_host}/bundles/manifest.json", ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE).read
+      OpenURI.open_uri("#{dev_server_base_url}/bundles/manifest.json", ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE).read
     else
       File.read(MANIFEST_PATH)
     end
@@ -68,10 +68,20 @@ module WebpackRailsGlue::Helper
   end
 
   def dev_server_host
-    "http://#{Rails.application.config.dev_server_host}"
+    Rails.application.config.dev_server_host
   end
 
+  def dev_server_base_url
+    "http://#{dev_server_host}"
+  end
+
+  CONNECT_TIMEOUT = 0.01
+
   def exist_dev_server_process?
-    system('ps aux | grep webpack-dev-serve[r]')
+    host, port = dev_server_host.split(':')
+    Socket.tcp(host, port, connect_timeout: CONNECT_TIMEOUT).close
+    true
+  rescue
+    false
   end
 end
